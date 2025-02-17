@@ -1,0 +1,92 @@
+# CoreGuard Project Intelligence
+
+### Development Patterns
+1. **Architecture**: 
+   - Uses macOS system APIs (NSAppleEvents, CorePerformance) for low-level monitoring
+   - Implements dependency injection for testable components
+   - Follows Apple's recommended patterns for performance-sensitive applications
+   - Requires proper application bundle for system integration
+
+2. **Language Preferences**:
+   - Swift-first implementation with protocol-oriented design
+   - Uses Combine framework for reactive programming patterns
+   - Prefers system frameworks over third-party dependencies
+   - Strong typing and compile-time safety
+
+3. **Performance Practices**:
+   - Memory management through ARC optimization
+   - Network operations use lightweight URLSession patterns
+   - Heavy instrumentation with os_signpost for performance metrics
+   - Throttled updates to prevent UI overload
+
+### Critical Implementation Paths
+1. **CPU Monitoring Flow**:
+   NSRunningApplication → NSAppleEventDescriptor → CorePerformance Metrics → Threshold Analysis
+
+2. **Notification System**:
+   UserDefaults (settings) → NotificationCenter → UNUserNotificationCenter 
+   → Action Handlers (requires proper bundle)
+
+3. **Security Patterns**:
+   - Keychain storage for sensitive thresholds
+   - Property wrapper-based rate limiting
+   - NSXPCConnection for privileged operations
+   - Bundle-based security requirements
+
+### Project-Specific Preferences
+1. **UI Conventions**:
+   - System-style menu bar integration
+   - Dark mode support required
+   - Preference pane-style settings
+   - Non-intrusive notifications
+
+2. **Testing Patterns**:
+   - XCTest with 80% coverage target
+   - Mocked NSWorkspace for application detection
+   - Performance tests using XCTMetric
+   - Bundle-aware test environment
+
+### Optimization History
+1. **Critical Fixes**:
+   - Avoided DispatchQueue.main.async for real-time monitoring
+   - Used Metal Performance Shaders for visualization
+   - Implemented custom autorelease pools for Objective-C interop
+   - Bundle configuration for system services
+
+2. **Anti-Patterns**:
+   - Avoid NSThread detachNewThreadSelector
+   - Prevent UIKit imports in monitoring components
+   - Ban forced unwrapping in core modules
+   - No direct bundle access without proper configuration
+
+### Documentation Standards
+1. Code-level:
+   - Swift Markup for public interfaces
+   - Doxygen-style comments for C interop
+   - Threat model annotations for security code
+   - Bundle requirement documentation
+
+2. Architectural:
+   - Sequence diagrams for API flows
+   - Data flow documentation for monitoring pipeline
+   - Decision records for major technical choices
+   - Bundle configuration requirements
+
+### Build Requirements
+1. **Application Bundle**:
+   - Proper Info.plist configuration
+   - Bundle identifier setup
+   - Entitlements configuration
+   - Resource management
+
+2. **System Integration**:
+   - Notification center access
+   - Menu bar presence
+   - Application monitoring
+   - Resource loading
+
+3. **Development Setup**:
+   - Xcode project structure
+   - Build phase configuration
+   - Code signing setup
+   - Bundle resource compilation
